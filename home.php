@@ -32,7 +32,7 @@ if (!isset($_SESSION['loggedin'])) {
     </header>
 		<div class="content">
 			<h2>Home Page</h2>
-			<p>Bienvendio de nuevo, <?=$_SESSION['email']?>!</p>
+			<p>Bienvendio de nuevo, <?=$_SESSION['name']?>!</p>
 		</div>
 	</body>
 </html>
