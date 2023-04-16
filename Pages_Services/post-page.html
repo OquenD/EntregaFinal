@@ -7,7 +7,7 @@
 <title>SERVICIOS A TU MANO</title>
 
 <!--CSS-->
-<link rel="stylesheet" href="../css/poststyle.css">
+<link rel="stylesheet" href="../css/style_post.css">
 
 <!--Icons-->
 <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
@@ -218,9 +218,9 @@
                 <div class="appointment">
                 <h1>Elegir Clase</h1>
                 
-                    <p>Nombre</p> <input class="fname" type="text" name="name" placeholder="Nombre Completo">
-                    <p>Correo</p> <input type="text" name="name" placeholder="Email">
-                    <p>Telefono</p> <input type="text" name="name" placeholder="Telefono">
+                     <input class="fname" type="text" name="name" placeholder="Nombre Completo">
+                     <input type="text" name="name" placeholder="Email">
+                     <input type="text" name="name" placeholder="Telefono">
 
                 <p>Clase</p>
                     <select>
@@ -235,46 +235,27 @@
                     <option value="friday2 ">Viernes 10AM-12PM </option>
                     <option value="friday3 ">Viernes 02PM-04PM </option>
                     </select>
-               <!-- <p>Comentario</p>
+               <p>Comentario</p>
                     <div>
                         <textarea rows="3"></textarea>
                     </div>
-                </div>-->
+                </div>
                 <!--Payment-->
                 <br>
-                <div class="payment">
-                    <div class="pay-info">
-                        <h2>Pago</h2>
-                            <ul class="form-list">
-                                <li class="form-list-row">
-                                    <div class="user">
-                                        <label for="#">Nombre </label><br>
-                                        <i class='bx bxs-user'></i><input type="text" required>
-                                    </div>
-                                </li>
-                                <li class="form-list-row">
-                                    <div class="number">
-                                        <label for="#">Numero de Tarjeta</label><br>
-                                        <i class='bx bx-credit-card' ></i><input type="text" required>
-                                    </div>
-                                </li>
-                                <li class="form-list-row clearfix">
-                                    <div class="date">
-                                        <label for="#">Fecha de Vencimiento</label><br>
-                                        <input class="month" type="text" required placeholder="MM">
-                                        <input class="year" type="text" required placeholder="YY">
-                                    </div>
-                                    <div class="cvc">
-                                        <label for="#">CVC</label><i class="fas fa-question-circle"></i><br>
-                                        <input type="text" required placeholder="123">
-                                    </div>
-                                </li>
-                                <li class="form-list-row">
-                                </li>
-                            </ul>
-                            <button>Agendar Cita</button>
-                    </div>
-                </div>
+                <div class="appointment">
+                    <h1>Pago</h1>   
+                        
+                        <input type="number" name="creditcardnumber" placeholder="Numero de tarjeta" id="creditcardnumber" required>
+                       
+                    
+                        <input type="month" name="creditcarddate"  id="creditcarddate" min="2019-01" max="2029-12">
+                        
+                      
+                        <input type="number" name="cvc" placeholder="CVC" id="cvc" required>
+                       
+        
+                        <input type="submit" value="Agendar"> 
+            </div>
             </form>
         </div>
 

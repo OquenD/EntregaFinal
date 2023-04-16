@@ -7,6 +7,7 @@
     scroll-padding-top: 2rem;
     box-sizing: border-box;
 }
+
  
 :root{
     --container-color: #1a1e21;
@@ -98,7 +99,7 @@ header.shadow .logo{
         
     }
       
- input[type=text]
+.search-container  input[type=text]
     {
         all: unset;
         padding: 5px;
@@ -129,6 +130,129 @@ header.shadow .logo{
         background: var(--second-color);
 
       }
+
+    .info {
+
+        margin: 100px auto;
+        content: "";
+        display: table;
+        clear: both;
+    }
+
+    .info::after {
+
+        content: "";
+        display: table;
+        clear: both;
+    }
+
+
+    .appointment{
+        float: left;
+        width: 50%;
+        padding: 10px;
+    }
+
+    .info .payment{
+        float: right;
+    }
+    .info h1 {
+        text-align: center;
+        color: var(--text-color);
+        font-size: 24px;
+        padding: 20px 0 20px 0;
+    }
+    .info form {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        padding-top: 20px;
+    }
+    .info form label {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 50px;
+       height: 50px;
+        background-color: var(--second-color);
+        color: #ffffff;
+    }
+
+    .info form .class-menu {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 120px;
+        height: 50px;
+        margin-bottom: 20px;
+        margin-right: 10px;
+        margin-left: 15px;
+        background-color: var(--second-color);
+        color: #ffffff;
+    }
+    
+    .info form .creditcard-menu {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 150px;
+        height: 50px;
+        margin-bottom: 20px;
+        margin-right: 10px;
+        margin-left: 15px;
+        padding: 5px;
+        background-color: var(--second-color);
+        color: #ffffff;
+    }
+    
+    .info form input[type="number"], .info form input[type="text"], .info form input[type="email"] {
+        width: 210px;
+        height: 50px;
+        border: 1px solid #dee0e4;
+        margin-bottom: 20px;
+        padding: 0 15px;
+    }
+
+    .info form select, .info form textarea {
+        width: 210px;
+        height: 50px;
+        border: 1px solid #dee0e4;
+        margin-bottom: 20px;
+        padding: 0 15px;
+    }
+
+    .info form input[type="month"]{
+        width: 150px;
+        height: 50px;
+        border: 1px solid #dee0e4;
+        margin-bottom: 20px;
+        padding: 0 15px;
+    
+    }
+    .info form input[type="date"]{
+        width: 150px;
+        height: 50px;
+        border: 1px solid #dee0e4;
+        margin-bottom: 20px;
+        padding: 0 15px;
+    
+    }
+    
+    .info form input[type="submit"] {
+        width: 100%;
+        padding: 15px;
+        margin-top: 20px;
+        background-color: var(--second-color);
+       border: 0;
+        cursor: pointer;
+        font-weight: bold;
+        color: #ffffff;
+        transition: background-color 0.2s;
+    }
+    .info form input[type="submit"]:hover {
+      background-color: #f76300;
+        transition: background-color 0.2s;
+    }
   
  /*home*/
  .home{
@@ -321,7 +445,143 @@ header.shadow .logo{
     margin: 1rem 0;
     text-align: justify;
 }
-/*Responsive*/
+
+.appointment {
+    float: left;
+    background-color: rgb(235, 235, 235);
+    width: 300px;
+    margin: 10px 0px 0px 19px;
+}
+
+.appointment form input[type="text"]{
+    width: 140px;
+}
+
+.payment {
+    float: right;
+    margin-top: 10px;
+    margin-right: 30px;
+    background-color: rgb(235, 235, 235);
+}
+
+.payment input[type="text"] {
+    width: 110px;
+    height: 50px;
+    border: 1px solid #dee0e4;
+    margin-bottom: 20px;
+    padding: 0 15px;
+}
+
+.payment input[type="submit"] {
+    width: 360px;
+    padding: 15px;
+   margin-top: 20px;
+    background-color: var(--second-color);
+    border: 0;
+    cursor: pointer;
+    font-weight: bold;
+    color: #ffffff;
+    transition: background-color 0.2s;
+}
+
+.payment input[type="submit"]:hover {
+    background-color: #ff6600;
+      transition: background-color 0.2s;
+  }
+
+body{
+    margin-top:20px;
+}
+.bg-light-gray {
+    background-color: #f7f7f7;
+}
+.table-bordered thead td, .table-bordered thead th {
+    border-bottom-width: 2px;
+}
+.table thead th {
+    vertical-align: bottom;
+    border-bottom: 2px solid #dee2e6;
+}
+.table-bordered td, .table-bordered th {
+    border: 1px solid #dee2e6;
+}
+
+
+.bg-sky.box-shadow {
+    box-shadow: 0px 5px 0px 0px #00a2a7;
+}
+
+.bg-lightred.box-shadow {
+    box-shadow: 0px 5px 0px 0px #868686;
+}
+
+
+.bg-sky {
+    background-color: #02c2c7;
+}
+
+.bg-lightred {
+    background-color: #868686;
+    color: #cacaca;
+}
+
+.padding-15px-lr {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+.padding-5px-tb {
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+.margin-10px-bottom {
+    margin-bottom: 10px;
+}
+.border-radius-5 {
+    border-radius: 5px;
+}
+
+.margin-10px-top {
+    margin-top: 10px;
+}
+.font-size14 {
+    font-size: 14px;
+}
+
+.text-light-gray {
+    color: #2c2c2c;
+}
+.font-size13 {
+    font-size: 13px;
+}
+
+.table-bordered td, .table-bordered th {
+    border: 1px solid #dee2e6;
+}
+.table td, .table th {
+    padding: .75rem;
+    vertical-align: top;
+    border-top: 1px solid #dee2e6;
+}
+
+
+
+    @media (min-width: 568px) {
+    .name-item, .city-item {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    }
+    .name-item input, .name-item div {
+    width: calc(50% - 20px);
+    }
+    .name-item div input {
+    width:97%;}
+    .name-item div label {
+    display:block;
+    padding-bottom:5px;
+    }
+    }
+/*Responsive
 
 @media(max-width:1060px){
     .container{
@@ -332,6 +592,12 @@ header.shadow .logo{
     .home-text{
         width: 100%;
     }
+    .payment {
+        flex-direction: column-reverse;
+      }
+      .col-25 {
+        margin-bottom: 20px;
+      }
 
 }
 @media(max-width:800px){
@@ -342,6 +608,12 @@ header.shadow .logo{
         margin: 0 auto;
         width: 95%;
      }
+     .payment {
+        flex-direction: column-reverse;
+      }
+      .col-25 {
+        margin-bottom: 20px;
+      }
 }
 @media(max-width:768px){
     .nav{
@@ -374,6 +646,12 @@ header.shadow .logo{
         margin-top: 9rem !important;
 
      }
+     .payment {
+        flex-direction: column-reverse;
+      }
+      .col-25 {
+        margin-bottom: 20px;
+      }
 }
 
 @media(max-width:570px){
@@ -393,6 +671,12 @@ header.shadow .logo{
       padding: 20px 0;
       text-align: center;
     }
+    .payment {
+        flex-direction: column-reverse;
+      }
+      .col-25 {
+        margin-bottom: 20px;
+      }
     
 }
 
@@ -429,4 +713,14 @@ header.shadow .logo{
         margin: 10px 0;
         text-align: justify;
     }
+    .payment {
+        flex-direction: column-reverse;
+      }
+      .col-25 {
+        margin-bottom: 20px;
+      }
 }
+
+
+
+*/

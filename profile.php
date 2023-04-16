@@ -39,7 +39,7 @@ $stmt->close();
         <!--Nav-->
         <div class="nav container">
             <!--Logo-->
-            <a href="index.html" class="logo">Servicios<span>Para</span>Todos</a>
+            <a href="home.php" class="logo">Servicios<span>Para</span>Todos</a>
             <nav class="navtop">
 			<div>
 				<a href="profile.php"><i class="fas fa-user-circle"></i>Perfil</a>
@@ -63,12 +63,24 @@ $stmt->close();
 				<p>Detalles de tu Cuenta:</p>
 				<table>
 					<tr>
-						<td>Username:</td>
+						<td>Nombre:</td>
 						<td><?=$_SESSION['name']?></td>
 					</tr>
 					<tr>
-						<td>Password:</td>
+						<td>Apellido:</td>
+						<td><?=$_SESSION['name']?></td>
+					</tr>
+					<tr>
+						<td>Constraeña:</td>
 						<td><?=$password?></td>
+					</tr>
+					<tr>
+						<td>Email:</td>
+						<td><?=$email?></td>
+					</tr>
+					<tr>
+						<td>Telefono:</td>
+						<td><?=$email?></td>
 					</tr>
 					<tr>
 						<td>Email:</td>
