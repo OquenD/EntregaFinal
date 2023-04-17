@@ -11,12 +11,12 @@ if (mysqli_connect_errno()) {
 	exit('Failed to connect to MySQL: ' . mysqli_connect_error());
 }
 // Now we check if the data was submitted, isset() function will check if the data exists.
-if (!isset($_POST['username'], $_POST['password'], $_POST['email'])) {
+if (!isset($_POST['name'], $_POST['lastname'], $_POST['phonenumber'], $_POST['email'], $_POST['password'], $_POST['service'], $_POST['business_name'], $_POST['service_name'], $_POST['personal_description'], $_POST['business_description'])) {
 	// Could not get the data that should have been sent.
 	exit('Please complete the registration form!');
 }
 // Make sure the submitted registration values are not empty.
-if (empty($_POST['username']) || empty($_POST['password']) || empty($_POST['email'])) {
+if (empty($_POST['name']) || empty($_POST['lastname']) ||empty($_POST['phonenumber']) || empty($_POST['email']) ||empty($_POST['password']) || empty($_POST['service']) || empty($_POST['business_name']) || empty($_POST['service_name']) || empty($_POST['personal_description']) || empty($_POST['business_description'])) {
 	// One or more values are empty.
 	exit('Please complete the registration form');
 }
@@ -24,30 +24,30 @@ if (empty($_POST['username']) || empty($_POST['password']) || empty($_POST['emai
 if (!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
 	exit('Email is not valid!');
 }
-if (preg_match('/^[a-zA-Z0-9]+$/', $_POST['username']) == 0) {
-    exit('Username is not valid!');
+if (preg_match('/^[a-zA-Z0-9]+$/', $_POST['name']) == 0) {
+    exit('name is not valid!');
 }
 if (strlen($_POST['password']) > 20 || strlen($_POST['password']) < 5) {
 	exit('Password must be between 5 and 20 characters long!');
 }
-if ($stmt = $con->prepare('SELECT id, password FROM accounts WHERE username = ?')) {
+if ($stmt = $con->prepare('SELECT id, password FROM providers WHERE email = ?')) {
 	// Bind parameters (s = string, i = int, b = blob, etc), hash the password using the PHP password_hash function.
-	$stmt->bind_param('s', $_POST['username']);
+	$stmt->bind_param('s', $_POST['email']);
 	$stmt->execute();
 	$stmt->store_result();
 	// Store the result so we can check if the account exists in the database.
 	if ($stmt->num_rows > 0) {
 		// Username already exists
-		echo 'Username exists, please choose another!';
+		echo 'Usuario ya existe!';
 	} else {
 		// Insert new account
         // Username doesn't exists, insert new account
-        if ($stmt = $con->prepare('INSERT INTO accounts (username, password, email) VALUES (?, ?, ?)')) {
+        if ($stmt = $con->prepare('INSERT INTO providers (name, lastname, phonenumber, email, password, service, business_name, service_name, personal_description, business_description) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)')) {
             // We do not want to expose passwords in our database, so hash the password and use password_verify when a user logs in.
             $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
-            $stmt->bind_param('sss', $_POST['username'], $password, $_POST['email']);
+            $stmt->bind_param('sss', $_POST['name'], $password, $_POST['email']);
             $stmt->execute();
-            echo 'You have successfully registered! You can now login!';
+            echo 'Se ha registrado exitosamente';
         } else {
             // Something is wrong with the SQL statement, so you must check to make sure your accounts table exists with all 3 fields.
             echo 'Could not prepare statement!';

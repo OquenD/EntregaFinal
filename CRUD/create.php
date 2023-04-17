@@ -49,7 +49,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     if(empty($input_password)){
         $password_err = "Please enter an password.";     
     } else{
-        $password = $input_password;
+        $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
     }
     
     // Validate birthdate
