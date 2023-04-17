@@ -80,8 +80,29 @@ $stmt->close();
 					</tr>
 					
 					<tr>
-						<td>Fecha de Nacimiento:</td>
-						<td><?=$birthdate?></td>
+						<td>Tipo de Servicio:</td>
+						<td><?=$service_type?></td>
+					</tr>
+
+					
+					<tr>
+						<td>Nombre de Empresa:</td>
+						<td><?=$company_name?></td>
+					</tr>
+					
+					<tr>
+						<td>Nombre de Servicio:</td>
+						<td><?=$ervice_name?></td>
+					</tr>
+					
+					<tr>
+						<td>Description Personal:</td>
+						<td><?=$personal_descripcion?></td>
+					</tr>
+
+					<tr>
+						<td>Description del Servicio:</td>
+						<td><?=$business_description?></td>
 					</tr>
 
 					<tr>
