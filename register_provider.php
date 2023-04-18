@@ -10,13 +10,15 @@ if (mysqli_connect_errno()) {
 	// If there is an error with the connection, stop the script and display the error.
 	exit('Failed to connect to MySQL: ' . mysqli_connect_error());
 }
+
+
 // Now we check if the data was submitted, isset() function will check if the data exists.
 if (!isset($_POST['name'], $_POST['lastname'], $_POST['phonenumber'], $_POST['email'], $_POST['password'], $_POST['service'], $_POST['business_name'], $_POST['service_name'], $_POST['personal_description'], $_POST['business_description'])) {
 	// Could not get the data that should have been sent.
 	exit('Please complete the registration form!');
 }
 // Make sure the submitted registration values are not empty.
-if (empty($_POST['name']) || empty($_POST['lastname']) ||empty($_POST['phonenumber']) || empty($_POST['email']) ||empty($_POST['password']) || empty($_POST['service']) || empty($_POST['business_name']) || empty($_POST['service_name']) || empty($_POST['personal_description']) || empty($_POST['business_description'])) {
+if (empty($_POST['name']) || empty($_POST['lastname']) ||empty($_POST['phonenumber']) || empty($_POST['email']) ||empty($_POST['password']) || empty($_POST['service_type']) || empty($_POST['business_name']) || empty($_POST['service_name']) || empty($_POST['personal_description']) || empty($_POST['business_description'])) {
 	// One or more values are empty.
 	exit('Please complete the registration form');
 }
