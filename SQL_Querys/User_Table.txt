@@ -9,3 +9,9 @@ CREATE TABLE users(
   account_type INT(11),
   PRIMARY KEY (id)
 );
+
+CREATE TRIGGER insertion AFTER INSERT ON users
+ FOR EACH ROW BEGIN
+  INSERT INTO allusers(email, password, account_type)
+  VALUES(NEW.email,NEW.password,1);
+END
