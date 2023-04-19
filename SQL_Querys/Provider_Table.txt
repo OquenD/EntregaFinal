@@ -12,3 +12,7 @@ CREATE TABLE provider (
   account_type INT(11),
   PRIMARY KEY (id)
 );
+
+CREATE TRIGGER insertinto AFTER INSERT ON provider
+ FOR EACH ROW INSERT INTO allusers(email, password, account_type)
+  VALUES(NEW.email,NEW.password,2)
