@@ -33,7 +33,7 @@
                 <div class="col-md-12">
                     <div class="mt-5 mb-3 clearfix">
                         <h2 class="pull-left">Employees Details</h2>
-                        <a href="create.php" class="btn btn-success pull-right"><i class="fa fa-plus"></i> Add New
+                        <a href="create_user.php" class="btn btn-success pull-right"><i class="fa fa-plus"></i> Add New
                             Employee</a>
                     </div>
                     <?php
@@ -41,7 +41,7 @@
                     require_once "config.php";
                     
                     // Attempt select query execution
-                    $sql = "SELECT * FROM provider";
+                    $sql = "SELECT * FROM users";
                     if($result = mysqli_query($link, $sql)){
                         if(mysqli_num_rows($result) > 0){
                             echo '<table class="table table-bordered table-striped">';
@@ -53,10 +53,7 @@
                                         echo "<th>Phonenumber</th>";
                                         echo "<th>Email</th>";
                                         echo "<th>Password</th>";
-                                        echo "<th>Service type</th>";
-                                        echo "<th>company name</th>";
-                                        echo "<th>service name</th>";
-                                        echo "<th>Personal descripcion</th>";
+                                        echo "<th>Birthdate</th>";
                                     echo "</tr>";
                                 echo "</thead>";
                                 echo "<tbody>";
@@ -68,13 +65,10 @@
                                         echo "<td>" . $row['phonenumber'] . "</td>";
                                         echo "<td>" . $row['email'] . "</td>";
                                         echo "<td>" . $row['password'] . "</td>";
-                                        echo "<td>" . $row['service_type'] . "</td>";
-                                        echo "<td>" . $row['company_name'] . "</td>";
-                                        echo "<td>" . $row['service_name'] . "</td>";
-                                        echo "<td>" . $row['personal_descripcion'] . "</td>";
+                                        echo "<td>" . $row['birthdate'] . "</td>";
                                         echo "<td>";
                                             echo '<a href="read.php?id='. $row['id'] .'" class="mr-3" title="View Record" data-toggle="tooltip"><span class="fa fa-eye"></span></a>';
-                                            echo '<a href="update.php?id='. $row['id'] .'" class="mr-3" title="Update Record" data-toggle="tooltip"><span class="fa fa-pencil"></span></a>';
+                                            echo '<a href="update_user.php?id='. $row['id'] .'" class="mr-3" title="Update Record" data-toggle="tooltip"><span class="fa fa-pencil"></span></a>';
                                             echo '<a href="delete.php?id='. $row['id'] .'" title="Delete Record" data-toggle="tooltip"><span class="fa fa-trash"></span></a>';
                                         echo "</td>";
                                     echo "</tr>";

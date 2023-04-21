@@ -188,73 +188,94 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
     <meta charset="UTF-8">
     <title>Update Record</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <style>
-        .wrapper{
-            width: 600px;
-            margin: 0 auto;
-        }
-    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <link href="../css/style_register.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-    <div class="wrapper">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-md-12">
-                    <h2 class="mt-5">Update Record</h2>
-                    <p>Please edit the input values and submit to update the employee record.</p>
-                    <form action="<?php echo htmlspecialchars(basename($_SERVER['REQUEST_URI'])); ?>" method="post">
-                    <div class="form-group">
-                            <label>Name</label>
-                            <input type="text" name="name" class="form-control <?php echo (!empty($name_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $name; ?>">
+
+<header>
+    <div class="nav container">
+                <!--Logo-->
+                <a href="#" class="logo">Servicios<span>Para</span>Todos</a>
+               
+    </div> 
+</header>
+<div class="register">
+			<h1>Actualizar</h1>
+            <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+
+                <label for="name">
+					<i class="fas fa-user"></i>
+				</label>
+				<input type="text" name="name" class="form-control <?php echo (!empty($name_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $name; ?>" placeholder="Nombre">
                             <span class="invalid-feedback"><?php echo $name_err;?></span>
-                        </div>
-                        <div class="form-group">
-                            <label>lastname</label>
-                            <textarea name="lastname" class="form-control <?php echo (!empty($lastname_err)) ? 'is-invalid' : ''; ?>"><?php echo $lastname; ?></textarea>
+
+
+                <label for="lastname">
+					<i class="fas fa-user"></i>
+				</label>
+				<input type="text" name="lastname" class="form-control <?php echo (!empty($lastname_err)) ? 'is-invalid' : ''; ?>"value="<?php echo $lastname; ?>"placeholder="Apellido">
                             <span class="invalid-feedback"><?php echo $lastname_err;?></span>
-                        </div>
-                        <div class="form-group">
-                            <label>Phonenumber</label>
-                            <input type="text" name="phonenumber" class="form-control <?php echo (!empty($phonenumber_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $phonenumber; ?>">
+
+
+				<label for="phonenumber">
+					<i class="fas fa-phone"></i>
+				</label>
+                <input type="text" name="phonenumber" class="form-control <?php echo (!empty($phonenumber_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $phonenumber; ?>"placeholder="Telefono">
                             <span class="invalid-feedback"><?php echo $phonenumber_err;?></span>
-                        </div>
-                        <div class="form-group">
-                            <label>Email</label>
-                            <input type="text" name="email" class="form-control <?php echo (!empty($email_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $email; ?>">
+
+
+                <label for="email">
+					<i class="fas fa-envelope"></i>
+				</label>
+                <input type="text" name="email" class="form-control <?php echo (!empty($email_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $email; ?>"placeholder="Correo">
                             <span class="invalid-feedback"><?php echo $email_err;?></span>
-                        </div>
-                        <div class="form-group">
-                            <label>password</label>
-                            <input type="password" name="password" class="form-control <?php echo (!empty($paswword_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $password; ?>">
+
+				<label for="password">
+					<i class="fas fa-lock"></i>
+				</label>
+				<input type="password" name="password" class="form-control <?php echo (!empty($paswword_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $password; ?>"placeholder="Constraseña">
                             <span class="invalid-feedback"><?php echo $password_err;?></span>
-                        </div>
-                        <div class="form-group">
-                            <label>Service Type</label>
-                            <input type="text" name="servicetype" class="form-control <?php echo (!empty($servicetype_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $servicetype; ?>">
+
+
+                <label for="servicetype">
+					<i class="fas fa-briefcase"></i>
+				</label>
+                <input type="text" name="servicetype" class="form-control <?php echo (!empty($servicetype_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $servicetype; ?>"placeholder="Tipo de Servicio">
                             <span class="invalid-feedback"><?php echo $servicetype_err;?></span>
-                        </div>
-                        <div class="form-group">
-                            <label>Company Name</label>
-                            <input type="text" name="companyname" class="form-control <?php echo (!empty($companyname_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $companyname; ?>">
+                  
+                <label for="companyname">
+					<i class="fas fa-briefcase"></i>
+				</label>
+				<input type="text" name="companyname" class="form-control <?php echo (!empty($companyname_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $companyname; ?>"placeholder="Nombre de Empresa">
                             <span class="invalid-feedback"><?php echo $companyname_err;?></span>
-                        </div>
-                        <div class="form-group">
-                            <label>Service Name</label>
-                            <input type="text" name="servicename" class="form-control <?php echo (!empty($servicename_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $servicename; ?>">
+
+
+                <label for="service_name">
+					<i class="fas fa-briefcase-clock"></i>
+				</label>
+				<input type="text" name="servicename" class="form-control <?php echo (!empty($servicename_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $servicename; ?>" placeholder="Nombre de Servicio">
                             <span class="invalid-feedback"><?php echo $servicename_err;?></span>
-                        </div>
-                        <div class="form-group">
-                            <label>Personal Descripcion</label>
-                            <input type="text" name="personaldescripcion" class="form-control <?php echo (!empty($personaldescripcion_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $personaldescripcion; ?>">
+
+
+                <textarea name="personaldescripcion" placeholder="Descripcion"class="form-control <?php echo (!empty($personaldescripcion_err)) ? 'is-invalid' : ''; ?>"><?php echo $personaldescripcion; ?></textarea>
                             <span class="invalid-feedback"><?php echo $personaldescripcion_err;?></span>
-                        </div>
-                        <input type="hidden" name="id" value="<?php echo $id; ?>"/>
-                        <input type="submit" class="btn btn-primary" value="Submit">
-                        <a href="index.php" class="btn btn-secondary ml-2">Cancel</a>
-                    </form>
-                </div>
-            </div>        
-        </div>
-    </div>
+
+				
+                <label for="profile_image" class="custom-file-upload">
+					<i class="fas fa-cloud-upload"></i> Foto de Perfil
+                </label>
+                    <input type="file" id="profile_image" name="profile_image" accept="image/*">
+                    
+                <br>
+                <label for="business_image" class="custom-file-upload">
+					<i class="fas fa-image"></i> Foto de Empresa
+				</label>
+                <input type="file" id="business_image" name="business_image" accept="image/*">
+
+				<input type="submit" class="btn btn-primary" value="Crear cuenta">
+                        <a href="index.php" class="btn btn-secondary ml-2">Cancelar</a>
+			</form>
+		</div>
 </body>
 </html>
