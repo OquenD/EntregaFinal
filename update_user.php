@@ -199,7 +199,7 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
                 <label for="email">
 					<i class="fas fa-envelope"></i>
 				</label>
-				<input type="text" name="email" class="form-control <?php echo (!empty($email_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $email; ?>">
+				<input type="text" name="email" class="form-control <?php echo (!empty($email_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $email; ?>" readonly>
                             <span class="invalid-feedback"><?php echo $email_err;?></span>
 
 

@@ -14,3 +14,8 @@ CREATE TRIGGER insertion AFTER INSERT ON users
   INSERT INTO allusers(email, password, tableid, account_type)
   VALUES(NEW.email,NEW.password,NEW.id,1);
 
+CREATE TRIGGER updateonusers AFTER UPDATE ON users
+FOR EACH ROW
+UPDATE allusers
+SET allusers.password = NEW.password
+WHERE allusers.email=NEW.email

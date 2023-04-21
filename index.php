@@ -1,12 +1,3 @@
-<?php
-// We need to use sessions, so you should always start sessions using the below code.
-session_start();
-// If the user is not logged in redirect to the login page...
-if (!isset($_SESSION['loggedin'])) {
-	header('Location: index.html');
-	exit;
-}
-?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -24,7 +15,6 @@ if (!isset($_SESSION['loggedin'])) {
 <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 <!--link Jquery-->
 <script src="https://code.jquery.com/jquery-3.6.4.js" integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E=" crossorigin="anonymous"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer">
 
 <!--link javascript-->
 <script src="js/main.js"></script>
@@ -46,10 +36,7 @@ if (!isset($_SESSION['loggedin'])) {
                 </form>
             </div>
             <!--Loginbtn-->
-            <div>
-				<a href="profile.php"><i class="fas fa-user-circle"></i>Perfil</a>
-				<a href="logout.php"><i class="fas fa-sign-out-alt"></i>Logout</a>
-			</div>
+            <a href="login.html" class="login">Login</a>
         </div>    
    
     </header>
@@ -90,7 +77,7 @@ if (!isset($_SESSION['loggedin'])) {
                                 echo '<div class="post-box '. $row['service_type'].'">';
                                         echo '<img src="images/'. $row['email'].'.jpg" alt="" class="post-img">';
                                         echo '<h2 class="category">'.$row['service_type'].'</h2>';
-                                        echo '<a href="service_providers_logged.php?id='.$row['id'].'" class="post-title">';
+                                        echo '<a href="service_providers.php?id='.$row['id'].'" class="post-title">';
                                         echo $row['service_name'] ;
                                         echo '</a>';
                                     echo '<p class="post-description">'.$row['personal_descripcion'].'</p>';

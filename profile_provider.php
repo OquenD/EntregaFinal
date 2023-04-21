@@ -40,10 +40,9 @@ $stmt->close();
         <!--Nav-->
         <div class="nav container">
             <!--Logo-->
-            <a href="home.php" class="logo">Servicios<span>Para</span>Todos</a>
+            <a href="#" class="logo">Servicios<span>Para</span>Todos</a>
             <nav class="navtop">
 			<div>
-				<a href="profile.php"><i class="fas fa-user-circle"></i>Perfil</a>
 				<a href="logout.php"><i class="fas fa-sign-out-alt"></i>Logout</a>
 			</div>
 		</nav>
