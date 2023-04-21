@@ -154,7 +154,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 				<label for="password">
 					<i class="fas fa-lock"></i>
 				</label>
-				<input type="password" name="password" class="form-control <?php echo (!empty($paswword_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $password; ?>" placeholder="Contraseña">
+				<input type="password" name="password" class="form-control <?php echo (!empty($password_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $password; ?>" placeholder="Contraseña">
                             <span class="invalid-feedback"><?php echo $password_err;?></span>
 
 

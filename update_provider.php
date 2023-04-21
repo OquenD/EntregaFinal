@@ -52,7 +52,7 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
     if(empty($input_password)){
         $password_err = "Please enter an password.";     
     } else{
-       $password= password_hash($_POST['password'], PASSWORD_DEFAULT);
+        $nwpassword= password_hash($_POST['password'], PASSWORD_DEFAULT);
     }
     
     // Validate service type
@@ -101,7 +101,7 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
             $param_lastname = $lastname;
             $param_phonenumber = $phonenumber;
             $param_email = $email;
-            $param_password = $password;
+            $param_password = $nwpassword;
             $param_servicetype = $servicetype;
             $param_companyname = $companyname;
             $param_servicename = $servicename;
@@ -234,7 +234,7 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
 				<label for="password">
 					<i class="fas fa-lock"></i>
 				</label>
-				<input type="password" name="password" class="form-control <?php echo (!empty($paswword_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $password; ?>"placeholder="Constraseña">
+				<input type="password" name="password" class="form-control <?php echo (!empty($password_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $password; ?>"placeholder="Constraseña">
                             <span class="invalid-feedback"><?php echo $password_err;?></span>
 
 
