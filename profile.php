@@ -9,7 +9,7 @@ if (!isset($_SESSION['loggedin'])) {
 $DATABASE_HOST = 'localhost';
 $DATABASE_USER = 'root';
 $DATABASE_PASS = '';
-$DATABASE_NAME = 'phplogin';
+$DATABASE_NAME = 'mainbase';
 $con = mysqli_connect($DATABASE_HOST, $DATABASE_USER, $DATABASE_PASS, $DATABASE_NAME);
 if (mysqli_connect_errno()) {
 	exit('Failed to connect to MySQL: ' . mysqli_connect_error());
@@ -17,6 +17,7 @@ if (mysqli_connect_errno()) {
 // We don't have the password or email info stored in sessions, so instead, we can get the results from the database.
 $stmt = $con->prepare('SELECT email, name, lastname, phonenumber, birthdate FROM users WHERE id = ?');
 // In this case we can use the account ID to get the account info.
+$id=$_SESSION['id'];
 $stmt->bind_param('i', $_SESSION['id']);
 $stmt->execute();
 $stmt->bind_result( $email, $name,$lastname,$phonenumber,$birthdate);
@@ -49,14 +50,7 @@ $stmt->close();
         </div>    
    
     </header>
-<!--
-		<nav class="navtop">
-			<div>
-				<h1>Website Title</h1>
-				<a href="profile.php"><i class="fas fa-user-circle"></i>Perfil</a>
-				<a href="logout.php"><i class="fas fa-sign-out-alt"></i>Logout</a>
-			</div>
-		</nav>-->
+
 		<div class="content">
 			<h2>Profile Page</h2>
 			<div>
@@ -85,7 +79,8 @@ $stmt->close();
 					</tr>
 
 					<tr>
-						<td><a href="update_user.html">Actualizar</a></td>
+						<td><a href="update_user.php?id=<?php echo $id?>">Actualizar</a></td>
+
 					</tr>
 
 					

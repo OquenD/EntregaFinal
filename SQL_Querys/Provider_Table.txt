@@ -1,4 +1,4 @@
-CREATE TABLE provider (
+CREATE TABLE providers (
   id INT(11) NOT NULL AUTO_INCREMENT,
   name VARCHAR(50) NOT NULL,
   lastname VARCHAR(50) NOT NULL,
@@ -9,10 +9,9 @@ CREATE TABLE provider (
   company_name VARCHAR(50),
   service_name VARCHAR(50),
   personal_descripcion TEXT,
-  account_type INT(11),
   PRIMARY KEY (id)
 );
 
-CREATE TRIGGER insertinto AFTER INSERT ON provider
- FOR EACH ROW INSERT INTO allusers(email, password, account_type)
-  VALUES(NEW.email,NEW.password,2)
+CREATE TRIGGER insertion2 AFTER INSERT ON providers
+ FOR EACH ROW INSERT INTO allusers(email, password, tableid, account_type)
+  VALUES(NEW.email,NEW.password,NEW.id,2)

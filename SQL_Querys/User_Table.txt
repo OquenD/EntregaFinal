@@ -6,12 +6,11 @@ CREATE TABLE users(
   email VARCHAR(100) NOT NULL,
   password VARCHAR(255) NOT NULL,
   birthdate DATE,
-  account_type INT(11),
   PRIMARY KEY (id)
 );
 
 CREATE TRIGGER insertion AFTER INSERT ON users
- FOR EACH ROW BEGIN
-  INSERT INTO allusers(email, password, account_type)
-  VALUES(NEW.email,NEW.password,1);
-END
+ FOR EACH ROW 
+  INSERT INTO allusers(email, password, tableid, account_type)
+  VALUES(NEW.email,NEW.password,NEW.id,1);
+

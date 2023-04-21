@@ -7,10 +7,7 @@ $name = $lastname= $phonenumber = $email = $password = $servicetype = $companyna
 $name_err = $lastname_err = $phonenumber_err = $email_err = $password_err = $servicetype_err = $companyname_err = $servicename_err = $personaldescripcion_err = "";
 
 // Processing form data when form is submitted
-if(isset($_POST["id"]) && !empty($_POST["id"])){
-    // Get hidden input value
-    $id = $_POST["id"];
-    
+if($_SERVER["REQUEST_METHOD"] == "POST"){
     // Validate name
     $input_name = trim($_POST["name"]);
     if(empty($input_name)){
@@ -52,7 +49,7 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
     if(empty($input_password)){
         $password_err = "Please enter an password.";     
     } else{
-        $password = $input_password;
+        $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
     }
     
     // Validate service type
@@ -86,15 +83,15 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
     } else{
         $personaldescripcion = $input_personaldescripcion;
     }
-    
+
     // Check input errors before inserting in database
     if(empty($name_err) && empty($lastname_err) && empty($phonenumber_err) && empty($email_err) && empty($password_err) && empty($servicetype_err) && empty($companyname_err) && empty($servicename_err) && empty($personaldescripcion_err)){
-        // Prepare an update statement
-        $sql = "UPDATE provider SET name=?, lastname=?, phonenumber=?, email=?, password=?, service_type=?, company_name=?, service_name=?, personal_descripcion=? WHERE id=?";
+        // Prepare an insert statement
+        $sql = "INSERT INTO providers (name, lastname, phonenumber, email, password, service_type, company_name, service_name, personal_descripcion) VALUES (?, ?, ?, ?, ?, ?, ?, ? ,?)";
          
         if($stmt = mysqli_prepare($link, $sql)){
             // Bind variables to the prepared statement as parameters
-            mysqli_stmt_bind_param($stmt, "ssssssssss", $param_name, $param_lastname, $param_phonenumber, $param_email, $param_password, $param_servicetype, $param_companyname, $param_servicename, $param_personaldescripcion, $param_id);
+            mysqli_stmt_bind_param($stmt, "sssssssss", $param_name, $param_lastname, $param_phonenumber, $param_email, $param_password, $param_servicetype, $param_companyname, $param_servicename, $param_personaldescripcion);
             
             // Set parameters
             $param_name = $name;
@@ -106,12 +103,11 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
             $param_companyname = $companyname;
             $param_servicename = $servicename;
             $param_personaldescripcion = $personaldescripcion;
-            $param_id = $id;
             
             // Attempt to execute the prepared statement
             if(mysqli_stmt_execute($stmt)){
-                // Records updated successfully. Redirect to landing page
-                header("location: index.php");
+                // Records created successfully. Redirect to landing page
+                header("location: index.html");
                 exit();
             } else{
                 echo "Oops! Something went wrong. Please try again later.";
@@ -124,61 +120,6 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
     
     // Close connection
     mysqli_close($link);
-} else{
-    // Check existence of id parameter before processing further
-    if(isset($_GET["id"]) && !empty(trim($_GET["id"]))){
-        // Get URL parameter
-        $id =  trim($_GET["id"]);
-        
-        // Prepare a select statement
-        $sql = "SELECT * FROM provider WHERE id = ?";
-        if($stmt = mysqli_prepare($link, $sql)){
-            // Bind variables to the prepared statement as parameters
-            mysqli_stmt_bind_param($stmt, "i", $param_id);
-            
-            // Set parameters
-            $param_id = $id;
-            
-            // Attempt to execute the prepared statement
-            if(mysqli_stmt_execute($stmt)){
-                $result = mysqli_stmt_get_result($stmt);
-    
-                if(mysqli_num_rows($result) == 1){
-                    /* Fetch result row as an associative array. Since the result set
-                    contains only one row, we don't need to use while loop */
-                    $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
-                    
-                    // Retrieve individual field value
-                    $name = $row["name"];
-                    $lastname = $row["lastname"];
-                    $phonenumber = $row["phonenumber"];
-                    $email = $row["email"];
-                    $password = $row["password"];
-                    $servicetype = $row["service_type"];
-                    $companyname = $row["company_name"];
-                    $servicename = $row["service_name"];
-                    $personaldescripcion = $row["personal_descripcion"];
-                } else{
-                    // URL doesn't contain valid id. Redirect to error page
-                    header("location: error.php");
-                    exit();
-                }
-                
-            } else{
-                echo "Oops! Something went wrong. Please try again later.";
-            }
-        }
-        
-        // Close statement
-        mysqli_stmt_close($stmt);
-        
-        // Close connection
-        mysqli_close($link);
-    }  else{
-        // URL doesn't contain id parameter. Redirect to error page
-        header("location: error.php");
-        exit();
-    }
 }
 ?>
  
@@ -186,22 +127,23 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Update Record</title>
+    <title>Create Record</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer">
-    <link href="../css/style_register.css" rel="stylesheet" type="text/css">
+    <link href="css/style_register.css" rel="stylesheet" type="text/css">
+  
 </head>
 <body>
-
 <header>
     <div class="nav container">
                 <!--Logo-->
                 <a href="#" class="logo">Servicios<span>Para</span>Todos</a>
                
     </div> 
+
 </header>
-<div class="register">
-			<h1>Actualizar</h1>
+		<div class="register">
+			<h1>Registrar</h1>
             <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
 
                 <label for="name">
@@ -274,7 +216,7 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
                 <input type="file" id="business_image" name="business_image" accept="image/*">
 
 				<input type="submit" class="btn btn-primary" value="Crear cuenta">
-                        <a href="index.php" class="btn btn-secondary ml-2">Cancelar</a>
+                        <a href="choose_user.html" class="btn btn-secondary ml-2">Cancelar</a>
 			</form>
 		</div>
 </body>
