@@ -52,12 +52,12 @@ if ($stmt = $con->prepare('SELECT password, tableid,account_type FROM allusers W
         
         } else {
             // Incorrect password
-            echo 'Incorrect email and/or password!';
+            header('Location: login.html');
         }
     } 
     else {
         // Incorrect email
-        echo 'Incorrect email and/or password!';
+        header('Location: login.html');
     }
 
 

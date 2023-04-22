@@ -64,7 +64,7 @@ $stmt->close();
     <section class="post-header">
         <div class="header-content post-container ">
             <!--back to home-->
-            <a href="index.php" class="back-home">Back to home</a>
+            <a href="home.php" class="back-home">Back to home</a>
             <!--Title-->
             <h1 class="header-title"><?=$company_name?></h1>
              <!--Post Image-->
