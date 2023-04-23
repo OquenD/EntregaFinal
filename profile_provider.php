@@ -99,6 +99,18 @@ $stmt->close();
 
 					</tr>
 
+|					<tr>
+
+						<td>Connectate a Leadmonk</td>
+						<td><a href="https://www.leadmonk.io/" target="_blank"><img src="images/leadmonk.png" height="50" width="50"></a> </td>
+					</tr>
+
+					<tr>
+					<td>Link de Calendario</td>
+					<td><input type="text" name="link" placeholder="Ingrese link de calendario"></td>
+					<td> <input type="submit" value="Guardar"> </td>
+					</tr>
+
 					
 				</table>
 			</div>

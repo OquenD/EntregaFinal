@@ -5,6 +5,7 @@ $DATABASE_USER = 'root';
 $DATABASE_PASS = '';
 $DATABASE_NAME = 'mainbase';
 $con = mysqli_connect($DATABASE_HOST, $DATABASE_USER, $DATABASE_PASS, $DATABASE_NAME);
+
 if (mysqli_connect_errno()) {
 	exit('Failed to connect to MySQL: ' . mysqli_connect_error());
 }
@@ -17,6 +18,40 @@ $stmt->execute();
 $stmt->bind_result( $name, $lastname, $phonenumber, $email, $password, $service_type, $company_name, $service_name, $personal_descripcion);
 $stmt->fetch();
 $stmt->close();
+
+$responses = [];
+// Check if the form was submitted
+if (isset($_POST['email'], $_POST['subject'], $_POST['name'], $_POST['msg'])) {
+	// Validate email adress
+	if (!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
+		$responses[] = 'Email is not valid!';
+	}
+	// Make sure the form fields are not empty
+	if (empty($_POST['email']) || empty($_POST['subject']) || empty($_POST['name']) || empty($_POST['msg'])) {
+		$responses[] = 'Please complete all fields!';
+	} 
+	// If there are no errors
+	if (!$responses) {
+		// Where to send the mail? It should be your email address
+		$to =  $email;
+		// Send mail from which email address?
+		$from = 'noreply@example.com';
+		// Mail subject
+		$subject = $_POST['subject'];
+		// Mail message
+		$message = $_POST['msg'];
+		// Mail headers
+		$headers = 'From: ' . $from . "\r\n" . 'Reply-To: ' . $_POST['email'] . "\r\n" . 'X-Mailer: PHP/' . phpversion();
+		// Try to send the mail
+		if (mail($to, $subject, $message, $headers)) {
+			// Success
+			$responses[] = 'Message sent!';		
+		} else {
+			// Fail
+			$responses[] = 'Message could not be sent! Please check your mail server settings!';
+		}
+	}
+}
 ?>
 
 <!DOCTYPE html>
@@ -28,7 +63,7 @@ $stmt->close();
 <title>SERVICIOS A TU MANO</title>
 
 <!--CSS-->
-<link rel="stylesheet" href="css/style_log_post.css">
+<link rel="stylesheet" href="css/style_service.css">
 
 <!--Icons-->
 <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
@@ -73,213 +108,59 @@ $stmt->close();
         </div>
 
     </section>
-   
-    <!--Posts-->
-
+    
     <section class="post-content post-container">
         <h2 class="sub-heading"><?=$service_name?></h2>
         <p class="post-text"><?=$personal_descripcion?></p>
    
-        <div class="container">
+    <!--Posts-->
+
+        <div>
+            <?php
+            $can = mysqli_connect($DATABASE_HOST, $DATABASE_USER, $DATABASE_PASS, $DATABASE_NAME);
+
+            if (mysqli_connect_errno()) {
+                exit('Failed to connect to MySQL: ' . mysqli_connect_error());
+            }
+        
+            $ctmt = $can->prepare('SELECT link FROM calender WHERE email = ?');
            
-            <div class="table-responsive">
-                <table class="table table-bordered text-center">
-                    <thead>
-                        <tr class="bg-light-gray">
-                            <th class="text-uppercase">Hora
-                            </th>
-                            <th class="text-uppercase">Lunes</th>
-                            <th class="text-uppercase">Martes</th>
-                            <th class="text-uppercase">Miercoles</th>
-                            <th class="text-uppercase">Jueves</th>
-                            <th class="text-uppercase">Viernes</th>
-                            <th class="text-uppercase">Sabado</th>
-                        </tr>
-                    </thead>
-                    <tbody>
+            $ctmt->bind_param('s', $email);
+            $ctmt->execute();
+            $ctmt->bind_result( $link);
+            $ctmt->fetch();
+            $ctmt->close();
+            if(is_null($link)){
+                echo "<p>Aun no se ha actualizado el calendario</p>";
+              
+            }
+            else{
+                echo $link;
+            }
 
-                        <!--8am-->                        
-                        <tr>
-                            <td class="align-middle">08:00am</td>
-                            <td class="bg-light-gray" rowspan="2">
-                              
-                            </td>
-                            <td class="bg-light-gray" rowspan="9">
 
-                            </td>
-
-                           <td class="bg-light-gray" rowspan="2">
-                              
-                            </td>
-                            <td class="bg-light-gray" rowspan="9">
-
-                            </td>
-                            <td rowspan="2">
-                                <span class="bg-sky padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-white font-size16  xs-font-size13">Clase</span>
-                                <div class="margin-10px-top font-size14">8:00-10:00</div>
-                                <div class="font-size13 text-light-gray">Disponible</div>
-                            </td>
-                            <td class="bg-light-gray" rowspan="9">
-
-                            </td>
-                            
-                        </tr>
-
-                        <!--9am-->                        
-                        <tr>
-                            <td class="align-middle">09:00am</td>
-                         
-
-                        </tr>
-
-                        <!--10am-->
-                        <tr>
-                            <td class="align-middle">10:00am</td>
-                            <td rowspan="2">
-                                <span class="bg-sky padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-white font-size16  xs-font-size13" rowspan="2">Clase</span>
-                                <div class="margin-10px-top font-size14" >10:00-12:00</div>
-                                <div class="font-size13 text-light-gray">Disponible </div>
-                            </td>
-
-                            <td rowspan="2">
-                                <span class="bg-sky padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-white font-size16  xs-font-size13" rowspan="2">Clase</span>
-                                <div class="margin-10px-top font-size14" >10:00-12:00</div>
-                                <div class="font-size13 text-light-gray">Disponible </div>
-                            </td>
-                            <td rowspan="2">
-                                <span class="bg-sky padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-white font-size16  xs-font-size13" rowspan="2">Clase</span>
-                                <div class="margin-10px-top font-size14" >10:00-12:00</div>
-                                <div class="font-size13 text-light-gray">Disponible </div>
-                            </td>
-
-                            
-                           
-                        </tr>
-
-                        <!--11am-->
-                        <tr>
-                            <td class="align-middle">11:00am</td>
-                            
-                            </td>
-                           
-                        </tr>
-
-                        <!--12pm-->
-                        <tr>
-                            <td class="align-middle">12:00pm</td>
-                            <td class="bg-light-gray"> </td>
-                            <td class="bg-light-gray"> </td>
-                            <td class="bg-light-gray"> </td>
-                           
-                        </tr>
-
-                        <!--2pm-->
-                        <tr>
-                            <td class="align-middle">02:00pm</td>
-                            <td rowspan="2">
-                                <span class="bg-sky padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-white font-size16  xs-font-size13">Clase</span>
-                                <div class="margin-10px-top font-size14">2:00-4:00</div>
-                                <div class="font-size13 text-light-gray">Disponible</div>
-                            </td>
-                            <td rowspan="2">
-                                <span class="bg-sky padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-white font-size16  xs-font-size13">Clase</span>
-                                <div class="margin-10px-top font-size14">2:00-4:00</div>
-                                <div class="font-size13 text-light-gray">Disponible </div>
-                            </td>
-                            <td rowspan="2">
-                                <span class="bg-sky padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-white font-size16  xs-font-size13">Clase</span>
-                                <div class="margin-10px-top font-size14">2:00-4:00</div>
-                                <div class="font-size13 text-light-gray">Disponible </div>
-                            </td>
-                           
-                           
-                        </tr>
-
-                        <!--3pm-->
-                        <tr>
-                            <td class="align-middle">03:00pm</td>
-  
-                        </tr>
-
-                        <!--4pm-->
-                        <tr>
-                            <td class="align-middle">04:00pm</td>
-                            <td rowspan="2">
-                                <span class="bg-sky padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-white font-size16  xs-font-size13">Clase</span>
-                                <div class="margin-10px-top font-size14">04:00-06:00</div>
-                                <div class="font-size13 text-light-gray">Disponible </div>
-                            </td>
-                            <td rowspan="2">
-                                <span class="bg-sky padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-white font-size16  xs-font-size13">Clase</span>
-                                <div class="margin-10px-top font-size14">04:00-06:00</div>
-                                <div class="font-size13 text-light-gray">Disponible </div>
-                            </td>
-                            <td class="bg-light-gray" rowspan="2"> </td>
-                            
-                            
-                        </tr>
-
-                        <!--5pm-->
-                        <tr>
-                            <td class="align-middle">05:00pm</td>   
-                            
-                        </tr>
-
-                    </tbody>
-                </table>
-            </div>
+         
+            ?>
         </div>
-        
-        <div class="info">
-            <form action="/">
-                <!--Cita-->
-                <div class="appointment">
-                <h1>Elegir Clase</h1>
-                
-                     <input class="fname" type="text" name="name" placeholder="Nombre Completo">
-                     <input type="text" name="name" placeholder="Email">
-                     <input type="text" name="name" placeholder="Telefono">
+        <form class="contact" method="post" action="">
+			<h1>Contactenos</h1>
+			<div class="fields">
+				<label for="email">
+					<input id="email" type="email" name="email" placeholder="Tu correo" required>
+				</label>
+				<label for="name">
+					<input type="text" name="name" placeholder="Tu nombre" required>
+				<label>
+				<input type="text" name="subject" placeholder="Asunto" required>
+				<textarea name="msg" placeholder="Mensaje" required></textarea>
+			</div>
+            <?php if ($responses): ?>
+            <p class="responses"><?php echo implode('<br>', $responses); ?></p>
+            <?php endif; ?>
+			<input type="submit">
+		</form>
 
-                <p>Clase</p>
-                    <select>
-                    <option selected value="" disabled selected></option>
-                    <option value="monday1" >Lunes 10AM-12PM</option>
-                    <option value="monday2">Lunes 02PM-04PM</option>
-                    <option value="monday3">Lunes 04PM-06PM</option>
-                    <option value="wednesday1">Miercoles 10AM-12PM </option>
-                    <option value="wednesday2">Miercoles 02PM-04PM </option>
-                    <option value="wednesday3">Miercoles 04PM-06PM </option>
-                    <option value="friday1">Viernes 08AM-10AM</option>
-                    <option value="friday2 ">Viernes 10AM-12PM </option>
-                    <option value="friday3 ">Viernes 02PM-04PM </option>
-                    </select>
-               <p>Comentario</p>
-                    <div>
-                        <textarea rows="3"></textarea>
-                    </div>
-                </div>
-                <!--Payment-->
-                <br>
-                <div class="appointment">
-                    <h1>Pago</h1>   
-                        
-                        <input type="number" name="creditcardnumber" placeholder="Numero de tarjeta" id="creditcardnumber" required>
-                       
-                    
-                        <input type="month" name="creditcarddate"  id="creditcarddate" min="2019-01" max="2029-12">
-                        
-                      
-                        <input type="number" name="cvc" placeholder="CVC" id="cvc" required>
-                       
-        
-                        <input type="submit" value="Agendar"> 
-            </div>
-            </form>
-        </div>
-
-        
-   
-    </section>
+</section>
    <!--footer-->
    <div class="footer container">
         <p>&#169; David*David All Rights Reserverd</p>

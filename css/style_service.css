@@ -447,121 +447,84 @@ header.shadow .logo{
     text-align: justify;
 }
 
-.appointment {
-    float: left;
-    background-color: rgb(235, 235, 235);
-    width: 300px;
-    margin: 10px 0px 0px 19px;
+.contact {
+    background-color: var(--container-color);
+    width: 400px;
+    margin: 30px;
+    box-shadow: 0px 0px 5px 0px rgba(0,0,0,.2);
 }
-
-.appointment form input[type="text"]{
-    width: 140px;
+.contact h1 {
+    margin: 0;
+    padding: 20px;
+    font-size: 22px;
+    text-align: center;
+    border-bottom: 1px solid var(--second-color);
+    color: var(--bg-color);
+    font-weight: 600;
 }
-
-.payment {
-    float: right;
-    margin-top: 10px;
-    margin-right: 30px;
-    background-color: rgb(235, 235, 235);
-}
-
-.payment input[type="text"] {
-    width: 110px;
-    height: 50px;
-    border: 1px solid #dee0e4;
-    margin-bottom: 20px;
-    padding: 0 15px;
-}
-
-.payment input[type="submit"] {
-    width: 360px;
+.contact .fields {
+    position: relative;
     padding: 15px;
-   margin-top: 20px;
-    background-color: var(--second-color);
+}
+.contact input[type="text"], .contact input[type="email"] {
+    display: block;
+    margin-top: 15px;
+    padding: 15px;
+    border: 1px solid #dfe0e0;
+    width: 100%;
+}
+.contact input[type="text"]:focus, .contact input[type="email"]:focus {
+    border: 1px solid #c6c7c7;
+}
+.contact input[type="text"]::placeholder, 
+.contact input[type="email"]::placeholder, 
+.contact textarea::placeholder {
+    color: #858688;
+}
+.contact textarea {
+    resize: none;
+    margin-top: 15px;
+    padding: 15px;
+    border: 1px solid #dfe0e0;
+    width: 100%;
+    height: 100px;
+}
+.contact textarea:focus {
+    border: 1px solid #c6c7c7;
+}
+.contact input[type="submit"] {
+    display: block;
+    margin-top: 15px;
+    padding: 15px;
     border: 0;
-    cursor: pointer;
+    background-color: var(--second-color);
     font-weight: bold;
-    color: #ffffff;
-    transition: background-color 0.2s;
+    color: var(--bg-color);
+    cursor: pointer;
+    width: 100%;
+}
+.contact input[type="submit"]:hover {
+    background-color: #f76300;
+}
+.contact input[name="email"] {
+    position: relative;
+    display: block;
+}
+.contact label {
+    position: relative;
+
+}
+.contact label i {
+    position: absolute;
+    color: #dfe2e5;
+    top: 31px;
+    left: 15px;
+    z-index: 10;
 }
 
-.payment input[type="submit"]:hover {
-    background-color: #ff6600;
-      transition: background-color 0.2s;
-  }
-
-body{
-    margin-top:20px;
-}
-.bg-light-gray {
-    background-color: #f7f7f7;
-}
-.table-bordered thead td, .table-bordered thead th {
-    border-bottom-width: 2px;
-}
-.table thead th {
-    vertical-align: bottom;
-    border-bottom: 2px solid #dee2e6;
-}
-.table-bordered td, .table-bordered th {
-    border: 1px solid #dee2e6;
-}
-
-
-.bg-sky.box-shadow {
-    box-shadow: 0px 5px 0px 0px #00a2a7;
-}
-
-.bg-lightred.box-shadow {
-    box-shadow: 0px 5px 0px 0px #868686;
-}
-
-
-.bg-sky {
-    background-color: #02c2c7;
-}
-
-.bg-lightred {
-    background-color: #868686;
-    color: #cacaca;
-}
-
-.padding-15px-lr {
-    padding-left: 15px;
-    padding-right: 15px;
-}
-.padding-5px-tb {
-    padding-top: 5px;
-    padding-bottom: 5px;
-}
-.margin-10px-bottom {
-    margin-bottom: 10px;
-}
-.border-radius-5 {
-    border-radius: 5px;
-}
-
-.margin-10px-top {
-    margin-top: 10px;
-}
-.font-size14 {
-    font-size: 14px;
-}
-
-.text-light-gray {
-    color: #2c2c2c;
-}
-.font-size13 {
-    font-size: 13px;
-}
-
-.table-bordered td, .table-bordered th {
-    border: 1px solid #dee2e6;
-}
-.table td, .table th {
-    padding: .75rem;
-    vertical-align: top;
-    border-top: 1px solid #dee2e6;
+.contact .responses {
+    padding: 15px;
+    margin: 0;
 }
 
 

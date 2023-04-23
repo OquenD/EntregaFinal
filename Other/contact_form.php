@@ -42,7 +42,7 @@ if (isset($_POST['email'], $_POST['subject'], $_POST['name'], $_POST['msg'])) {
 		<meta name="viewport" content="width=device-width,minimum-scale=1">
 		<title>Contact Form</title>
 		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
-		<link rel="stylesheet" href="style_contact.css">
+		<link rel="stylesheet" href="css/style_contact.css">
 	</head>
 	<body>
 		<form class="contact" method="post" action="">
