@@ -268,10 +268,7 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
                     <input type="file" id="profile_image" name="profile_image" accept="image/*">
                     
                 <br>
-                <label for="business_image" class="custom-file-upload">
-					<i class="fas fa-image"></i> Foto de Empresa
-				</label>
-                <input type="file" id="business_image" name="business_image" accept="image/*">
+               
 
                 <input type="hidden" name="id" value="<?php echo $id; ?>"/>
                 <input type="submit" class="btn btn-primary" value="Submit">

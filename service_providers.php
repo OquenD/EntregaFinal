@@ -76,12 +76,7 @@ if (isset($_POST['email'], $_POST['subject'], $_POST['name'], $_POST['msg'])) {
         <div class="nav container">
             <!--Logo-->
             <a href="index.php" class="logo">Servicios<span>Para</span>Todos</a>
-               <!--SearchBar-->
-               <div class="search-container">
-                <form class="search-form" action="/action_page.php">
-                  <input type="text" placeholder="Search.." name="search">
-                  <button type="submit"><i class='bx bx-search'></i></button>
-                </form>
+             
             </div>
             <!--Loginbtn-->
             <a href="login.html" class="login">Login</a>

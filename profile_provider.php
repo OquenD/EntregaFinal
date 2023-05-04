@@ -95,24 +95,49 @@ $stmt->close();
 
 					
 					<tr>
-						<td><a href="update_provider.php?id=<?php echo $id?>">Actualizar</a></td>
+						<td><a href="update_provider.php?id=<?php echo $id?>">Actualizar Datos</a></td>
 
 					</tr>
 
-|					<tr>
+					<tr>
 
 						<td>Connectate a Leadmonk</td>
 						<td><a href="https://www.leadmonk.io/" target="_blank"><img src="images/leadmonk.png" height="50" width="50"></a> </td>
 					</tr>
-
 					<tr>
-					<td>Link de Calendario</td>
-					<td><input type="text" name="link" placeholder="Ingrese link de calendario"></td>
-					<td> <input type="submit" value="Guardar"> </td>
+					<td>Calendario</td>
 					</tr>
+					<tr>
+					
+					<td><a href="update_calender.php?email=<?php echo $email?>">Cambiar Calendario</a></td>
 
+					</tr>
 					
 				</table>
+				<?php
+					$can = mysqli_connect($DATABASE_HOST, $DATABASE_USER, $DATABASE_PASS, $DATABASE_NAME);
+
+					if (mysqli_connect_errno()) {
+						exit('Failed to connect to MySQL: ' . mysqli_connect_error());
+					}
+
+					$ctmt = $can->prepare('SELECT link FROM calender WHERE email = ?');
+
+					$ctmt->bind_param('s', $email);
+					$ctmt->execute();
+					$ctmt->bind_result( $link);
+					$ctmt->fetch();
+					$ctmt->close();
+					if(is_null($link)){
+						echo '<a href="create_calender.php?id=<?php echo $email?>">Crear Calendario</a>';
+					}
+					else{
+					echo $link;
+					
+					}
+					?>
+					
+
 			</div>
 		</div>
 	</body>

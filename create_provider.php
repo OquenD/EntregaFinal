@@ -210,10 +210,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                     <input type="file" id="profile_image" name="profile_image" accept="image/*">
                     
                 <br>
-                <label for="business_image" class="custom-file-upload">
-					<i class="fas fa-image"></i> Foto de Empresa
-				</label>
-                <input type="file" id="business_image" name="business_image" accept="image/*">
+                
 
 				<input type="submit" class="btn btn-primary" value="Crear cuenta">
                         <a href="choose_user.html" class="btn btn-secondary ml-2">Cancelar</a>
