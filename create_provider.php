@@ -130,7 +130,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     <title>Create Record</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer">
-    <link href="css/style_register.css" rel="stylesheet" type="text/css">
+    <link href="css/style_register_.css" rel="stylesheet" type="text/css">
   
 </head>
 <body>
@@ -183,8 +183,20 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 <label for="servicetype">
 					<i class="fas fa-briefcase"></i>
 				</label>
-                <input type="text" name="servicetype" class="form-control <?php echo (!empty($servicetype_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $servicetype; ?>"placeholder="Tipo de Servicio">
-                            <span class="invalid-feedback"><?php echo $servicetype_err;?></span>
+                <input list="services" name="servicetype" class="form-control <?php echo (!empty($servicetype_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $servicetype; ?>"placeholder="Tipo de Servicio">
+                        <datalist id="services">
+                            <option value="Educacion">
+                            <option value="Cultura">
+                            <option value="Legal">
+                            <option value="Salud">
+                            <option value="Tecnologia">
+                            <option value="Hogar">
+                            <option value="Mecanica">
+                            <option value="Transporte">
+                            <option value="Eventos">
+                            <option value="OficiosVarios">
+                        </datalist>            
+                <span class="invalid-feedback"><?php echo $servicetype_err;?></span>
                   
                 <label for="companyname">
 					<i class="fas fa-briefcase"></i>

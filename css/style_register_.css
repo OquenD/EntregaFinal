@@ -109,7 +109,7 @@ a{
    
 }
 
-.register form input[type="password"], .register form input[type="text"], .register form input[type="email"] {
+.register form input[type="password"], .register form input[type="text"], .register form input[type="email"], .register form input[name="servicetype"] {
     width: 310px;
     height: 50px;
     border: 1px solid #dee0e4;
