@@ -11,7 +11,7 @@ if(isset($_POST["email"]) && !empty($_POST["email"])){
     // Get hidden input value
     $email = $_POST["email"];
     
-    // Validate name
+    // Validate link
     $input_calenderlink = trim($_POST["calenderlink"]);
     if(empty($input_calenderlink)){
         $calenderlink_err = "Please enter a link.";
@@ -49,7 +49,7 @@ if(isset($_POST["email"]) && !empty($_POST["email"])){
     
     // Close connection
     mysqli_close($link);
-} else{
+}    else{
     // Check existence of id parameter before processing further
     if(isset($_GET["email"]) && !empty(trim($_GET["email"]))){
         // Get URL parameter

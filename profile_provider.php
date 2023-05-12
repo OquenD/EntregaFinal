@@ -108,14 +108,13 @@ $stmt->close();
 					<td>Calendario</td>
 					</tr>
 					<tr>
-					
-					<td><a href="update_calender.php?email=<?php echo $email?>">Cambiar Calendario</a></td>
-
+				
 					</tr>
 					
 				</table>
 				<?php
 					$can = mysqli_connect($DATABASE_HOST, $DATABASE_USER, $DATABASE_PASS, $DATABASE_NAME);
+					$changelink='<a href='.'"update_calender.php?email='.$email.'">Cambiar Calendario</a>';
 
 					if (mysqli_connect_errno()) {
 						exit('Failed to connect to MySQL: ' . mysqli_connect_error());
@@ -129,11 +128,14 @@ $stmt->close();
 					$ctmt->fetch();
 					$ctmt->close();
 					if(is_null($link)){
-						echo '<a href="create_calender.php?id=<?php echo $email?>">Crear Calendario</a>';
+						
+						echo '<a href='.'"create_calender.php?email='.$email.'">Crear Calendario</a>';
 					}
 					else{
 					echo $link;
-					
+					echo '<a href='.'"update_calender.php?email='.$email.'">Cambiar Calendario</a>';
+
+					 
 					}
 					?>
 					
