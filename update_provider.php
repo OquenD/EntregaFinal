@@ -160,7 +160,7 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
                     $personaldescripcion = $row["personal_descripcion"];
                 } else{
                     // URL doesn't contain valid id. Redirect to error page
-                    header("location: error.php");
+                    header("location: pictureForm.php?email=$email");
                     exit();
                 }
                 
@@ -262,10 +262,7 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
                             <span class="invalid-feedback"><?php echo $personaldescripcion_err;?></span>
 
 				
-                <label for="profile_image" class="custom-file-upload">
-					<i class="fas fa-cloud-upload"></i> Foto de Perfil
-                </label>
-                    <input type="file" id="profile_image" name="profile_image" accept="image/*">
+           
                     
                 <br>
                
