@@ -96,6 +96,7 @@ $stmt->close();
 					
 					<tr>
 						<td><a href="update_provider.php?id=<?php echo $id?>">Actualizar Datos</a></td>
+						<td><a href="pictureForm.php?email=<?php echo $email?>">Photo</a></td>
 
 					</tr>
 

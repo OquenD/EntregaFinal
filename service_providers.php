@@ -77,7 +77,6 @@ if (isset($_POST['email'], $_POST['subject'], $_POST['name'], $_POST['msg'])) {
             <!--Logo-->
             <a href="index.php" class="logo">Servicios<span>Para</span>Todos</a>
              
-            </div>
             <!--Loginbtn-->
             <a href="login.html" class="login">Login</a>
         </div>    

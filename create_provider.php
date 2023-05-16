@@ -1,4 +1,5 @@
 <?php
+
 // Include config file
 require_once "config.php";
  
@@ -8,6 +9,7 @@ $name_err = $lastname_err = $phonenumber_err = $email_err = $password_err = $ser
 
 // Processing form data when form is submitted
 if($_SERVER["REQUEST_METHOD"] == "POST"){
+
     // Validate name
     $input_name = trim($_POST["name"]);
     if(empty($input_name)){
@@ -83,6 +85,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     } else{
         $personaldescripcion = $input_personaldescripcion;
     }
+    
 
     // Check input errors before inserting in database
     if(empty($name_err) && empty($lastname_err) && empty($phonenumber_err) && empty($email_err) && empty($password_err) && empty($servicetype_err) && empty($companyname_err) && empty($servicename_err) && empty($personaldescripcion_err)){
@@ -107,7 +110,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             // Attempt to execute the prepared statement
             if(mysqli_stmt_execute($stmt)){
                 // Records created successfully. Redirect to landing page
-                header("location: index.php");
+                header("location: pictureForm.php?email=$email");
                 exit();
             } else{
                 echo "Oops! Something went wrong. Please try again later.";
@@ -120,7 +123,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     
     // Close connection
     mysqli_close($link);
+
+    
+
 }
+
 ?>
  
 <!DOCTYPE html>
@@ -215,11 +222,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 <textarea name="personaldescripcion" placeholder="Descripcion"class="form-control <?php echo (!empty($personaldescripcion_err)) ? 'is-invalid' : ''; ?>"><?php echo $personaldescripcion; ?></textarea>
                             <span class="invalid-feedback"><?php echo $personaldescripcion_err;?></span>
 
-				
-                <label for="profile_image" class="custom-file-upload">
-					<i class="fas fa-cloud-upload"></i> Foto de Perfil
-                </label>
-                    <input type="file" id="profile_image" name="profile_image" accept="image/*">
+			
                     
                 <br>
                 
